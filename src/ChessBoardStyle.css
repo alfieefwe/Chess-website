@@ -1,0 +1,70 @@
+/* src/components/Chessboard.css */
+.chessboard {
+  display: flex;
+  flex-direction: column;
+  width: 480px; /* Slightly larger for better visibility */
+  height: 480px;
+  border: 4px solid #333;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  margin: 20px auto;
+  background-color: #f0d9b5; /* Light brown for the board */
+}
+
+.row {
+  display: flex;
+  flex: 1;
+}
+
+.square {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid #333;
+  position: relative;
+}
+
+/* Alternating square colors */
+.row:nth-child(odd) .square:nth-child(even),
+.row:nth-child(even) .square:nth-child(odd) {
+  background-color: #b58863; /* Dark brown for the squares */
+}
+
+.row:nth-child(odd) .square:nth-child(odd),
+.row:nth-child(even) .square:nth-child(even) {
+  background-color: #f0d9b5; /* Light brown for the squares */
+}
+
+/* Hover effect for squares */
+.square:hover {
+  background-color: rgba(255, 255, 0, 0.3); /* Light yellow on hover */
+  cursor: pointer;
+}
+
+/* Labels for rows and columns */
+.square::before {
+  content: attr(data-label);
+  position: absolute;
+  font-size: 12px;
+  color: rgba(0, 0, 0, 0.5);
+  top: 2px;
+  left: 2px;
+}
+
+/* Labels for columns (a-h) */
+.row:first-child .square::before {
+  content: attr(data-col);
+  top: auto;
+  bottom: 2px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+/* Labels for rows (1-8) */
+.square:first-child::before {
+  content: attr(data-row);
+  top: 50%;
+  left: auto;
+  right: 2px;
+  transform: translateY(-50%);
+}
